@@ -61,18 +61,6 @@ cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 logging.basicConfig(filename='record.log', level=logging.DEBUG, format=f'%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
 socketio = SocketIO(app,logger=True, engineio_logger=True,cors_allowed_origins='*')
-@socketio.on('connect')
-def test_connect():
-    """event listener when client connects to the server"""
-    app.logger.info("client has connected")
-    emit("connect",{"data":"id: is connected"})
-
-@socketio.on('disconnect')
-def disconnect():
-    app.logger.info("client has diconnected")
-    emit(
-        'user disconnected',{"data":"id: is disconnected"},  
-        broadcast=True)
 
 class User(db.Model):
     __tablename__ = "User"

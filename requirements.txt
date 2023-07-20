@@ -1,5 +1,4 @@
 gunicorn
-eventlet
 cmake
 dlib
 Flask==2.1.3
